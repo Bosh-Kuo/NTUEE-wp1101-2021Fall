@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- 指定螢幕寬度為裝置寬度，畫面載入初始縮放比例 100% -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework1 數位相簿</title>
+
+    <!-- Magnific Popup core CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    <!-- album = gallery -->
+    <div class="album">
+
+        <input type="radio" name="buttons" id="all" checked>
+        <input type="radio" name="buttons" id="scenery">
+        <input type="radio" name="buttons" id="food">
+        <input type="radio" name="buttons" id="life">
+        <input type="radio" name="buttons" id="family">
+        <input type="radio" name="buttons" id="meme">
+
+        <div class="menu">
+            <!-- 相簿選單 -->
+            <h1>MY PHOTO ALBUM</h1>
+            <div class="top-content">
+                <!-- 用來給表單的指定控制元件一個說明標題 -->
+                <label for="all"> ALL PHOTO </label>
+                <label for="scenery"> SCENRY </label>
+                <label for="food"> FOOD </label>
+                <label for="life"> LIFE </label>
+                <label for="family"> FAMILY </label>
+                <label for="meme"> MEME </label>
+            </div>
+        </div>
+
+        <!-- 圖片容器 -->
+        <div class="photo-container">
+            <!-- scenery -->
+            <a href="images/scenery1.jpeg" class="image scenery">
+                <img src="images/scenery1.jpeg" alt="">
+            </a>
+            <a href="images/scenery2.jpeg" class="image scenery">
+                <img src="images/scenery2.jpeg" alt="">
+            </a>
+            <a href="images/scenery2.jpeg" class="image scenery">
+                <img src="images/scenery3.jpeg" alt="">
+            </a>
+            
+
+            <!-- ice cream -->
+            <a href="images/ice-cream1.jpeg" class="image food">
+                <img src="images/ice-cream1.jpeg" alt="">
+            </a>
+            <a href="images/ice-cream2.jpeg" class="image food">
+                <img src="images/ice-cream2.jpeg" alt="">
+            </a>
+            <a href="images/ice-cream3.jpeg" class="image food">
+                <img src="images/ice-cream3.jpeg" alt="">
+            </a>
+
+            <!-- cake -->
+            <a href="images/cake1.jpeg" class="image food">
+                <img src="images/cake1.jpeg" alt="">
+            </a>
+            <a href="images/cake2.jpeg" class="image food">
+                <img src="images/cake2.jpeg" alt="">
+            </a>
+            <a href="images/cake3.jpeg" class="image food">
+                <img src="images/cake3.jpeg" alt="">
+            </a>
+
+            <!-- sandwitch -->
+            <a href="images/sandwich1.jpeg" class="image food">
+                <img src="images/sandwich1.jpeg" alt="">
+            </a>
+            <a href="images/sandwich2.jpeg" class="image food">
+                <img src="images/sandwich2.jpeg" alt="">
+            </a>
+            <a href="images/sandwich3.jpeg" class="image food">
+                <img src="images/sandwich3.jpeg" alt="">
+            </a>
+
+            <!-- headphone -->
+            <a href="images/headphone1.jpeg" class="image life">
+                <img src="images/headphone1.jpeg" alt="">
+            </a>
+            <a href="images/headphone2.jpeg" class="image life">
+                <img src="images/headphone2.jpeg" alt="">
+            </a>
+            <a href="images/headphone3.jpeg" class="image life">
+                <img src="images/headphone3.jpeg" alt="">
+            </a>
+
+            <!-- family -->
+            <a href="images/family1.jpeg" class="image family">
+                <img src="images/family1.jpeg" alt="">
+            </a>
+            <a href="images/family2.jpeg" class="image family">
+                <img src="images/family2.jpeg" alt="">
+            </a>
+            <a href="images/family3.jpeg" class="image family">
+                <img src="images/family3.jpeg" alt="">
+            </a>
+
+            <!-- meme -->
+            <a href="images/meme1.jpeg" class="image meme">
+                <img src="images/meme1.jpeg" alt="">
+            </a>
+            <a href="images/meme2.jpeg" class="image meme">
+                <img src="images/meme2.jpeg" alt="">
+            </a>
+            <a href="images/meme3.jpeg" class="image meme">
+                <img src="images/meme3.jpeg" alt="">
+            </a>
+        </div>
+    </div>
+
+    <!-- 播放與切換功能
+    <!-- jquery cdn link  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- magnific popup js cdn link  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.album').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+        });
+    </script> 
+</body>
+</html>

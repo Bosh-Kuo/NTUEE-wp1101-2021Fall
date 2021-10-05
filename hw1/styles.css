@@ -1,0 +1,176 @@
+*{
+    /* 沒有其實也沒關係 */
+    margin: 0; padding: 0;
+    
+    /* 自動計算扣除 border 或 padding 所剩餘的空間，使得視覺大小就是hieght,width大小 */
+    box-sizing: border-box;
+    
+    /* 字型 */
+    font-family: Arial, sans-serif;
+
+    /*轉場效果（滑鼠觸碰到圖片時）*/
+    transition:all 0.5s cubic-bezier(.34,1.12,.68,1.31);
+}
+
+/* 相簿背景 */
+.album{
+    /* 设置段落的最小高度，當元素內容少時希望box高度是固定的，當元素能容多到超過min-height時能跟著元素一起擴增 */
+    min-height: 150vh; 
+    background:#eee;
+    padding-bottom: 100px; /*沒有其實沒關係*/
+}
+
+/* 相簿選單按鍵群 */
+.album .menu{
+    /* 使box隨視窗大小保持彈性 */
+    display: flex;
+
+    /* 交錯軸對齊 */
+    align-items: flex-end;
+
+    /* 主軸對齊 */
+    justify-content: center;
+    
+    /* 超出範圍時是否換行 */
+    flex-wrap: wrap; 
+    padding:20px ;
+    text-align: center;
+}
+
+/* 將原本的radio選單隱藏 */
+input {
+    display: none;
+}
+
+h1{
+    font-size :35px;
+
+    /* 「相對定位」過的元素如何在頁面上移動位置或增加了多少空間，都不會影響到原本其他元素所在的位置。 */
+    position: relative;
+    width: 100%;
+    margin: 25px 0;
+}
+
+h1::before{
+    content: '';
+    /* 若我們把 position 改成絕對定位 absolute 的話，那麼該物件所參考的空間就變成了「具定位設定的父層」或是「視窗」 */
+    position: absolute;
+    width: 150px;
+    height: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: gray;
+
+    /* 離「定位所參考的父層空間底部」-10px  */
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: animate 2s infinite linear;
+}
+@keyframes animate {
+    0%{ width: 150px;}
+    50%{ width: 25%;}
+    100%{ width: 150px;}
+}
+.top-content{
+    background-color:whitesmoke;
+    width:90%;
+    margin: 20px auto 20px auto;
+    min-height: 50px;
+    display: flex;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px lightgray;
+
+    /* 使box隨視窗大小保持彈性 */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap; 
+    padding:20px ;
+    text-align: center;
+}
+label{
+    display: inline-block;
+    height: 200%;
+    padding: 5px 10px 5px 10px;
+    margin: 5px 25px;
+    /* line-height: 60px; */
+    font-size: 25px;
+    background-color: wheat;
+    color:gray;
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px lightgray;
+    cursor: pointer;
+    transition: color .3s;
+
+    /* 使box隨視窗大小保持彈性 */
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap; 
+    text-align: center;
+}
+label:hover{
+    color: white;
+    background-color: rgb(112, 112, 112);
+}
+
+#all:checked ~  .photo-container .image{
+    opacity: 1;
+    transform: scale(1);
+    position: relative;
+    transition: .5s;
+}
+
+
+#scenery:checked ~  .photo-container .scenery{
+    opacity: 1;
+    transform: scale(1);
+    position: relative;
+}
+
+#scenery:checked ~  .photo-container a:not([class*='scenery']),
+#food:checked ~  .photo-container a:not([class*='food']),
+#life:checked ~  .photo-container a:not([class*='life']),
+#family:checked ~  .photo-container a:not([class*='family']),
+#meme:checked ~  .photo-container a:not([class*='meme']){
+    opacity: 0;
+    transform: scale(0);
+    position: absolute;
+    transition: 0s;
+}
+
+
+.album .photo-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.album .photo-container .image{
+    height:250px;
+    width: 350px;
+
+    /* 隱藏超出的部分 */
+    overflow: hidden;
+    border:5px solid #fff;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px rgba(0,0,0,.3);
+    margin: 20px;
+}
+
+.album .photo-container .image img{
+    /* 設定圖片在裡面需要填滿的範圍 */
+    height: 100%;
+    width:100%;
+
+    /* 填滿 element 並保持寬高比，超出的部分會被裁切 */
+    object-fit: cover;
+}
+
+.album .photo-container .image:hover img{
+    /* 游標觸碰時放大1.4倍 */
+    transform: scale(1.4);
+}
