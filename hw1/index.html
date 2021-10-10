@@ -16,9 +16,7 @@
 </head>
 
 <body>
-    <!-- album = gallery -->
     <div class="album">
-
         <input type="radio" name="buttons" id="all" checked>
         <input type="radio" name="buttons" id="scenery">
         <input type="radio" name="buttons" id="food">
@@ -26,18 +24,21 @@
         <input type="radio" name="buttons" id="family">
         <input type="radio" name="buttons" id="meme">
 
-        <div class="menu">
-            <!-- 相簿選單 -->
-            <h1>MY PHOTO ALBUM</h1>
-            <div class="top-content">
-                <!-- 用來給表單的指定控制元件一個說明標題 -->
-                <label for="all"> ALL PHOTO </label>
-                <label for="scenery"> SCENRY </label>
-                <label for="food"> FOOD </label>
-                <label for="life"> LIFE </label>
-                <label for="family"> FAMILY </label>
-                <label for="meme"> MEME </label>
+        <h1>MY PHOTO ALBUM</h1>
+        <div class="image-viewer__container">
+            <div class="image-viewer__display">
+                <img src="images/scenery1.jpeg" alt="">
             </div>
+        </div>
+        
+        <div class="button-container">
+            <!-- 用來給表單的指定控制元件一個說明標題 -->
+            <label for="all"> ALL PHOTO </label> 
+            <label for="scenery"> SCENERY </label> 
+            <label for="food"> FOOD </label> 
+            <label for="life"> LIFE </label>
+            <label for="family"> FAMILY </label> 
+            <label for="meme"> MEME </label> 
         </div>
 
         <!-- 圖片容器 -->
@@ -122,7 +123,7 @@
         </div>
     </div>
 
-    <!-- 播放與切換功能
+    
     <!-- jquery cdn link  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- magnific popup js cdn link  -->
