@@ -1,0 +1,169 @@
+*{
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    transition:all 0.5s cubic-bezier(.34,1.12,.68,1.31);
+}
+
+/* 相簿背景 */
+.album{
+    min-height: 150vh; 
+    min-width: 100vw;
+    background:#eee;
+    padding-bottom: 100px; 
+}
+
+/* 將原本的radio選單隱藏 */
+input {
+    display: none;
+}
+
+/* 標題 */
+h1{
+    position: relative;
+    text-align: center;
+    font-size :35px;
+    width: 100%;
+    padding-top: 20px;
+    margin: 0px auto 15px auto; 
+}
+h1::before{
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: gray;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: animate 2s infinite linear;
+}
+@keyframes animate {
+    0%{ width: 15vw;}
+    50%{ width: 25vw;}
+    100%{ width: 15vw;}
+}
+
+/* 大圖預覽容器 */
+.image-viewer__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.image-viewer__container .image-viewer__display{
+    background-color:whitesmoke;
+    width:600px;
+    height:400px;
+    margin: 20px auto 20px auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px lightgray;
+    border:5px solid rgb(0, 0, 0);
+}
+.image-viewer__container .image-viewer__display img{
+    height: 100%;
+    width:100%;
+    object-fit: contain;
+}
+#count{
+    display: flex;
+    justify-content: center;
+    font-size :20px;
+    gap: 80px;
+    letter-spacing:5px;
+}
+
+/* 相簿按鈕容器 */
+.button-container {
+    background-color:whitesmoke;
+    width:90%;
+    margin: 0px auto 0px auto;
+    min-height: 50px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px lightgray;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+    padding:10px ;
+}
+label{
+    padding: 5px 10px 5px 10px;
+    margin: 5px 25px;
+    font-size: 25px;
+    background-color: wheat;
+    color:gray;
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px lightgray;
+    cursor: pointer;
+}
+label:hover{
+    color: white;
+    background-color: rgb(112, 112, 112);
+}
+
+/* 選擇全部相片時 */
+#all:checked ~  .photo-container .image{
+    opacity: 1;
+    transform: scale(1);
+    position: relative;
+    transition: .5s;
+}
+#all:checked ~ .button-container label[for=all]{
+    color: white;
+    background-color: rgb(112, 112, 112);
+}
+
+/* 選擇其中一個相簿時 */
+#scenery:checked ~  .photo-container a:not([class*='scenery']),
+#food:checked ~  .photo-container a:not([class*='food']),
+#life:checked ~  .photo-container a:not([class*='life']),
+#family:checked ~  .photo-container a:not([class*='family']),
+#meme:checked ~  .photo-container a:not([class*='meme']){
+    opacity: 0;
+    transform: scale(0);
+    position: absolute;
+    transition: 0s;
+}
+#scenery:checked ~  .button-container label[for=scenery],
+#food:checked ~  .button-container label[for=food],
+#life:checked ~  .button-container label[for=life],
+#family:checked ~  .button-container label[for=family],
+#meme:checked ~  .button-container label[for=meme]{
+    color: white;
+    background-color: rgb(112, 112, 112);
+}
+
+/* 預覽圖容器 */
+.album .photo-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+/* 預覽圖圖框 */
+.album .photo-container .image{
+    height:200px;
+    width: 300px;
+    overflow: hidden;
+    border:5px solid #fff;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px rgba(0,0,0,.3);
+    margin: 10px 10px 10px 10px;
+}
+.album .photo-container .highLight{
+    border:5px solid red;
+}
+/* 預覽圖圖片 */
+.album .photo-container .image img{
+    height: 100%;
+    width:100%;
+    object-fit: cover;
+}
+.album .photo-container .image:hover img{
+    transform: scale(1.4);
+    cursor: pointer;
+}
