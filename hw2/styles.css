@@ -75,8 +75,32 @@ h1::before{
     font-size :20px;
     gap: 80px;
     letter-spacing:5px;
+    padding-bottom:10px;
 }
 
+#Tool-Bar{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+}
+#Add-Tool{
+    display: flex;
+    justify-content: center;
+    font-size :15px;
+    gap: 10px;
+    letter-spacing:5px;
+    margin:0 50px 0 50px;
+    
+}
+#Remove-Tool{
+    display: flex;
+    /* justify-content: center; */
+    font-size :15px;
+    gap: 10px;
+    letter-spacing:5px;
+    margin:0 50px 0 50px;
+    /* padding-bottom:10px; */
+}
 /* 相簿按鈕容器 */
 .button-container {
     background-color:whitesmoke;
@@ -90,7 +114,7 @@ h1::before{
     flex-wrap: wrap; 
     padding:10px ;
 }
-label{
+.button-container > label{
     padding: 5px 10px 5px 10px;
     margin: 5px 25px;
     font-size: 25px;
@@ -100,7 +124,7 @@ label{
     box-shadow: 3px 3px 5px lightgray;
     cursor: pointer;
 }
-label:hover{
+.button-container > label:hover{
     color: white;
     background-color: rgb(112, 112, 112);
 }
@@ -118,11 +142,11 @@ label:hover{
 }
 
 /* 選擇其中一個相簿時 */
-#scenery:checked ~  .photo-container a:not([class*='scenery']),
-#food:checked ~  .photo-container a:not([class*='food']),
-#life:checked ~  .photo-container a:not([class*='life']),
-#family:checked ~  .photo-container a:not([class*='family']),
-#meme:checked ~  .photo-container a:not([class*='meme']){
+#scenery:checked ~  .photo-container div:not([class*='scenery']),
+#food:checked ~  .photo-container div:not([class*='food']),
+#life:checked ~  .photo-container div:not([class*='life']),
+#family:checked ~  .photo-container div:not([class*='family']),
+#meme:checked ~  .photo-container div:not([class*='meme']){
     opacity: 0;
     transform: scale(0);
     position: absolute;
@@ -145,7 +169,7 @@ label:hover{
     flex-wrap: wrap;
 }
 /* 預覽圖圖框 */
-.album .photo-container .image{
+.album .photo-container  .image{
     height:200px;
     width: 300px;
     overflow: hidden;

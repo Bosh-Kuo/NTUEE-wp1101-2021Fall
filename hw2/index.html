@@ -29,12 +29,44 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Natural_scenery_of_nepal_07.jpg/1599px-Natural_scenery_of_nepal_07.jpg" id="display" alt="">
             </div>
         </div>
+
+        <!-- 統計相片數element-->
         <div id="count"> 
             <span id="total">Total: <span></span> </span>
             <span id="this_album">This Album: <span></span> </span>
             <span id="no.">No. <span></span> </span>
         </div>
-        
+
+        <!-- 新增相片功能按鈕element -->
+        <div id="Tool-Bar">
+            <div id="Add-Tool">
+                <label for="Add"> 選擇欲新增相片的相簿 </label> 
+                <select id="Add">
+                    <option value="">Select one album</option>
+                    <option value = 0>Scenery</option>
+                    <option value = 1 >Food</option>
+                    <option value = 2>Life</option>
+                    <option value = 3>Family</option>
+                    <option value = 4>Meme</option>
+                </select>
+                <button id="Add-Button">點擊輸入照片url</button>
+            </div>
+
+        <!-- 刪除相片功能按鈕element -->
+            <div id="Remove-Tool">
+                <label for="Remove"> 選擇欲刪除相片的相簿 </label> 
+                <select id="Remove">
+                    <option value="">Select one album</option>
+                    <option value = 0 >Scenery</option>
+                    <option value = 1 >Food</option>
+                    <option value = 2>Life</option>
+                    <option value = 3>Family</option>
+                    <option value = 4>Meme</option>
+                </select>
+                <button id="Remove-Button">點擊輸入照片編號</button>
+            </div>
+        </div>
+
         <div class="button-container">
             <!-- 用來給表單的指定控制元件一個說明標題 -->
             <label for="all"> ALL PHOTO </label> 
@@ -44,88 +76,87 @@
             <label for="family"> FAMILY </label> 
             <label for="meme"> MEME </label> 
             <label for="blank"> BLANK </label> 
-            
         </div>
         
+        
         <!-- 圖片容器 -->
-        <div class="photo-container">
+        <div class="photo-container">            
             <!-- scenery -->
-            <a class="image scenery highLight">
+            <div class="image scenery highLight">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Natural_scenery_of_nepal_07.jpg/1599px-Natural_scenery_of_nepal_07.jpg" alt="">
-            </a>
-            <a class="image scenery">
+            </div>
+            <div class="image scenery">
                 <img src="https://live.staticflickr.com/3821/10345247155_67b25ec9ac_b.jpg" alt="">
-            </a>
-            <a class="image scenery">
+            </div>
+            <div class="image scenery">
                 <img src="https://p0.pxfuel.com/preview/856/603/675/enchanting-forest-walk-hike.jpg" alt="">
-            </a>
+            </div>
             
-
             <!-- ice cream -->
-            <a class="image food">
+            <div class="image food">
                 <img src="https://p1.pxfuel.com/preview/615/178/465/ice-cream-fruits-dessert.jpg" alt="">
-            </a>
-            <a class="image food">
+            </div>
+            <div class="image food">
                 <img src="https://p1.pxfuel.com/preview/282/948/15/dessert-hands-ice-cream-outside.jpg" alt="">
-            </a>
-            <a class="image food">
+            </div>
+            <div class="image food">
                 <img src="https://p1.pxfuel.com/preview/947/596/996/food-drink-dessert-food-fruit.jpg" alt="">
-            </a>
+            </div>
 
             <!-- cake -->
-            <a class="image food">
+            <div class="image food">
                 <img src="https://cdn.pixabay.com/photo/2020/03/10/03/49/red-velvet-cake-4917734_1280.jpg" alt="">
-            </a>
-            <a class="image food">
+            </div>
+            <div class="image food">
                 <img src="https://cakeiy.com/_next/image?url=%2Fimg%2Fchocolate-round-cake%2Fbirthday-cake-name-your-name.png&w=1920&q=75" alt="">
-            </a>
-            <a class="image food">
+            </div>
+            <div class="image food">
                 <img src="https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/wk64480505-image-kp6aizc0.jpg?w=1300&dpr=1&fit=default&crop=default&q=80&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=7c3f2bbb08528e79634f6aafc5c8d292" alt="">
-            </a>
+            </div>
 
             <!-- sandwitch -->
-            <a class="image food">
+            <div class="image food">
                 <img src="https://p0.pxfuel.com/preview/594/211/683/food-and-drink-bread-sandwich.jpg" alt="">
-            </a>
-            <a class="image food">
+            </div>
+            <div class="image food">
                 <img src="https://p1.pxfuel.com/preview/850/545/143/restaurant-sandwich.jpg" alt="">
-            </a>
-            <a class="image food">
+            </div>
+            <div class="image food">
                 <img src="https://p1.pxfuel.com/preview/547/251/642/food-ham-filling-sandwich-cheese-delicious.jpg" alt="">
-            </a>
+            </div>
 
             <!-- headphone -->
-            <a class="image life">
+            <div class="image life">
                 <img src="https://p1.pxfuel.com/preview/642/154/417/headphones-audio-technology.jpg" alt="">
-            </a>
-            <a class="image life">
+            </div>
+            <div class="image life">
                 <img src="https://p1.pxfuel.com/preview/193/599/760/headphones-headset-music-white.jpg" alt="">
-            </a>
-            <a class="image life">
+            </div>
+            <div class="image life">
                 <img src="https://p1.pxfuel.com/preview/152/192/1003/headphones-music-song-foam-black-playlist.jpg" alt="">
-            </a>
+            </div>
 
             <!-- family -->
-            <a class="image family">
+            <div class="image family">
                 <img src="https://p0.pxfuel.com/preview/458/296/59/friends-hugging-mountain-people.jpg" alt="">
-            </a>
-            <a class="image family">
+            </div>
+            <div class="image family">
                 <img src="https://p1.pxfuel.com/preview/602/371/800/family-sunset-beach-happiness.jpg" alt="">
-            </a>
-            <a class="image family">
+            </div>
+            <div class="image family">
                 <img src="https://p0.pxfuel.com/preview/69/812/850/man-child-running-family.jpg" alt="">
-            </a>
+            </div>
 
             <!-- meme -->
-            <a class="image meme">
+            <div class="image meme">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Dog_meme.jpg" alt="">
-            </a>
-            <a class="image meme">
+            </div>
+            <div class="image meme">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Elder_meme.jpg" alt="">
-            </a>
-            <a class="image meme">
+            </div>
+            <div class="image meme">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Wikipedia_meme.jpg/1599px-Wikipedia_meme.jpg" alt="">
-            </a>
+            </div>
         </div>
     </div>
     <script src="main.js"></script>
