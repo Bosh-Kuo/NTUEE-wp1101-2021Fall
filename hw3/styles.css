@@ -209,6 +209,10 @@ footer.hidden{
     cursor: pointer;
 }
 
+.todo-app__clean button.hidden {
+    display: none;
+}
+
 .todo-app__clean button:focus {
     outline: none;
 }

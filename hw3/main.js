@@ -3,12 +3,15 @@ const left = document.querySelector(".todo-app__total span");
 const appList = document.querySelector(".todo-app__list");
 const footer = document.getElementById("todo-footer")
 var itemLabelId = 0;
+var completed = 0;
+var todoItem = 0;
 
 // Input元素EventListener => 當有文字輸入時，偵測輸入的字元是否為enter與輸入文字長度，若該輸入為enter且有輸入長度就createNewTodoItem
 newInput.addEventListener("keypress", (e) => {
     if (e.charCode === 13 && newInput.value.length > 0){
         createNewTodoItem(newInput.value);
         newInput.value = "";
+        todoItem+=1;
     }
 })
 
@@ -23,12 +26,14 @@ appList.addEventListener("click", (e) => {
             }
             h1.classList.add("completed");
             updateLeft(-1);
+            upadteCompleted(1);
         }else{
             if (document.querySelector('#completed').classList.contains("on")) {
                 e.target.parentElement.parentElement.classList.add('hidden');
             }
             h1.classList.remove("completed");
             updateLeft(1);
+            upadteCompleted(-1);
         }
     }  
 })
@@ -36,12 +41,15 @@ appList.addEventListener("click", (e) => {
 // todoList監聽 => 點擊若該元素為img（x符號），檢查此欄是否為checked，若不為checked，刪除此欄再left item -1，並檢查是否要隱藏footer
 appList.addEventListener("click", (e) => {
     if (e.target.tagName=="IMG"){
+        // todoItem -=1;
         let checked = (e.target.parentElement.querySelector('input').checked);
         removeTodoItem(e.target.parentElement);
         if (!checked){
             updateLeft(-1);
+        }else{
+            upadteCompleted(-1);
         }
-        checkLeft();
+        checkTodoItiem();
     }
 })
 
@@ -80,13 +88,31 @@ function updateLeft(i){
     left.innerText = Number(left.innerText) + i ;
 }
 
+function upadteCompleted(i){
+    completed += i;
+    const clearButton = footer.querySelector(".todo-app__clean button");
+    if (completed == 0){
+        clearButton.classList.add("hidden");
+    }else{
+        clearButton.classList.remove("hidden");
+    }
+}
+
 function removeTodoItem(element){
+    todoItem -= 1;
     element.remove();
 }
 
 // 若left = 0，隱藏footer並重置button class="on"未至於 #all
 function checkLeft(){
     if (left.innerText == 0){
+        footer.classList.add("hidden");
+        initializeButtons();
+    }
+}
+
+function checkTodoItiem(){
+    if (todoItem == 0){
         footer.classList.add("hidden");
         initializeButtons();
     }
@@ -115,8 +141,10 @@ function filter(element){
         })
     }else{
         li_elements.forEach(li => {
-            if (li.querySelector("input").checked)
+            if (li.querySelector("input").checked){
                 removeTodoItem(li);
+                upadteCompleted(-1);
+            }
         })
         checkLeft();
     }
