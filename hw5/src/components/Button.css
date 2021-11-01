@@ -1,0 +1,59 @@
+.Button {
+    align-items: center;
+    background: #333;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    font-size: 30px;
+    height: 9vh;
+    justify-content: center;
+    width: 9vh;
+    transition: filter 0.15s ease-in;
+    transform: translate3d(0, 0, 0);
+}
+
+.Button:hover {
+    filter: brightness(125%);
+}
+
+.Button:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(8, 8);
+    opacity: 0;
+    transition: transform 0.4s, opacity 1s;
+}
+
+.Button:active:after {
+    transform: scale(0, 0);
+    opacity: 0.2;
+    transition: 0s;
+    }
+
+.Button.Large {
+    width: 20vh;
+    grid-column: 1 / span 2;
+    border-radius: 57.5px;
+    position: relative;
+    justify-content: flex-start;
+    padding-left: 43px;
+}
+
+.Button.function {
+    color: black;
+    background: #a5a5a5;
+}
+
+.Button.operator {
+    background: #f1a33c;
+}

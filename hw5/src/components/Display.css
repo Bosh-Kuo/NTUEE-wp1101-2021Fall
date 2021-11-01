@@ -1,0 +1,31 @@
+.Display{
+    background-color: #000000;
+    color: #fff;
+    padding: 8vh 1vh 1vh 1vh;
+}
+
+.IndicatorList{
+    height: 10vh;
+    font-size: 1em;
+    line-height: 1;
+    opacity: 0.4;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25em;
+    min-height: 1em;
+}
+
+.Expression{
+    margin-left: auto;
+}
+
+.Show{
+    font-size: 8vh;
+    font-weight: 400;
+    min-height: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;  
+    overflow: hidden;
+}

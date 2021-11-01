@@ -1,0 +1,11 @@
+.App {
+  background: black;
+  border-radius: 45px;
+  color: white;
+  height: 95vh;
+  width: 46vh;
+  min-width: 46vh;
+  padding: 20px;
+  position: center;
+  margin: 10px 10px 10px 10px;
+}
