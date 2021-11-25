@@ -102,6 +102,6 @@ export default (boardSize, mineNum) => {
         }
     }
 
-    printBoard()
+    // printBoard()
     return { board, mineLocations };
 };
