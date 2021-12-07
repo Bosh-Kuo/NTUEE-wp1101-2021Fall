@@ -83,7 +83,7 @@ router.post('/newPost', async (req, res) => {
         }
 
     } catch (error) {
-        console.error(err.name + ' ' + err.message)
+        console.error(error.name + ' ' + error.message)
         res.status(403).send(
             {
                 message: 'error',
@@ -112,7 +112,7 @@ router.delete('/post', async (req, res) => {
         }
 
     } catch (error) {
-        console.error(err.name + ' ' + err.message)
+        console.error(error.name + ' ' + error.message)
         res.status(403).send(
             {
                 message: 'error',
