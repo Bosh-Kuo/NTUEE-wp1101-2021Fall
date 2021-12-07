@@ -87,6 +87,7 @@ router.post('/newPost', async (req, res) => {
         res.status(403).send(
             {
                 message: 'error',
+                post: null
             }
         )
     }
@@ -98,9 +99,9 @@ router.delete('/post', async (req, res) => {
         const postId = req.query.pid
 
         // const newPost = new Post({ postId: postId, title: title, content: content, timestamp: timestamp })
-        
+
         if (postId) {
-            await Post.deleteOne({postId: postId})
+            await Post.deleteOne({ postId: postId })
             res.status(200).send(
                 {
                     message: 'success',
