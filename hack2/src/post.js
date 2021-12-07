@@ -13,9 +13,9 @@ function Post(props) {
   // TODO 3-(2): complete getPostDetail function to get the full information of a post from database
   const getPostDetail = async () => {
     try {
-      const { data: { data } } = await instance.get('/postDetail', { params: { pid: pid } })
-      console.log(data)
-      setData(data)
+      const { data: { post } } = await instance.get('/postDetail', { params: { pid: pid } })
+      console.log(post)
+      setData(post)
     } catch (error) {
       console.log(error)
       throw new Error('Network Error(HTTP:500)! Contact the server owner');

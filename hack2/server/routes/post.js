@@ -42,7 +42,7 @@ router.get('/postDetail', async (req, res) => {
             res.status(200).send(
                 {
                     message: 'success',
-                    data: post
+                    post: post
                 }
             );
         }
@@ -55,7 +55,7 @@ router.get('/postDetail', async (req, res) => {
         res.status(403).send(
             {
                 message: 'error',
-                data: null
+                post: null
             }
         )
     }
