@@ -11,7 +11,7 @@ function Board(props) {
   const getPosts = async () => {
     try{
       const { data: { data } } = await instance.get('/allPosts')
-      console.log(data)
+      // console.log(data)
       setPosts(data)
     }catch(error){
       console.log(error)
