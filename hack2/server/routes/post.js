@@ -7,7 +7,7 @@ const router = express.Router()
 // TODO 2-(1): create the 1st API (/api/allPosts)
 router.get('/allPosts', async (req, res) => {
     try {
-        const posts = await Post.find().sort({ timestamp: 1 })
+        const posts = await Post.find().sort({ timestamp: -1 })
         // console.log(posts)
         if (posts.length) {
             res.status(200).send(
