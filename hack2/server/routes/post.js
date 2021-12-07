@@ -117,6 +117,7 @@ router.delete('/post', async (req, res) => {
         res.status(403).send(
             {
                 message: 'error',
+                post: null
             }
         )
     }
