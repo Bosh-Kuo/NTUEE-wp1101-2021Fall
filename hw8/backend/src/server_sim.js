@@ -1,32 +1,23 @@
 import mongoose from 'mongoose';
 import express from 'express'
-import cors from 'cors';
 import WebSocket from 'ws';
 import http from 'http';
 import dotenv from "dotenv-defaults";
-import Message from './models/Message';
-
-import authRoute from './routes/auth';
-import { sendData, sendStatus, initData } from './wssConnect';
+import Message from './models/message'
+import { sendData, sendStatus, initData } from './wssConnect'
 dotenv.config();
 
-// connect to MongoDB
 if (!process.env.MONGO_URL) {
     console.error("Missing MONGO_URL!");
     process.exit(1);
-} else {
-    mongoose.connect(process.env.MONGO_URL, {
-        useUnifiedTopology: true,
-        useNewUrlParser: true
-    })
 }
+mongoose.connect(process.env.MONGO_URL, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+})
 
 const db = mongoose.connection;
 const app = express();
-app.use(cors());
-app.use(express.json());
-app.use('/api/auth', authRoute)
-
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server }); // 建立WebSoccket Server
 
@@ -37,7 +28,6 @@ const broadcastMessage = (data, status) => {
         sendStatus(status, client);  // 傳送status
     });
 };
-
 
 db.on('error', (error) => {
     throw new Error("DB connection error " + error);
@@ -61,7 +51,7 @@ db.once('open', () => {
                     const { name, body } = payload
                     const message
                         = new Message({ name, body })
-                    try {
+                    try {                        
                         await message.save();  // 將client傳來的message存到DB
                     } catch (e) {
                         throw new Error

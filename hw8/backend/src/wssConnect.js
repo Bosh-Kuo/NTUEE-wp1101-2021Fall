@@ -1,4 +1,4 @@
-import Message from './models/message.js';
+import Message from './models/Message.js';
 const sendData = (data, ws) => {
     ws.send(JSON.stringify(data));
 }

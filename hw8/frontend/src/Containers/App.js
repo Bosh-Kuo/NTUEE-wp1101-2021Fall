@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import useChat from '../Hooks/useChat'
 import { message } from 'antd'
 import styled from 'styled-components';
 import ChatRoom from './ChatRoom';
 import SignIn from './SignIn';
+import Register from './Register'
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,6 +23,7 @@ function App() {
   const { status, messages, sendMessage, clearMessages } = useChat()
   const [username, setUsername] = useState(saveUser || '')
   const [signedIn, setSignedIn] = useState(false)
+  const [password, setPassword] = useState('')
 
   const displayStatus = (payload) => {
     if (payload.msg) {
@@ -50,10 +53,22 @@ function App() {
 
   return (
     <Wrapper>
-      {!signedIn ?
-        <SignIn username={username} setUsername={setUsername} setSignedIn={setSignedIn} displayStatus={displayStatus}></SignIn> :
-        <ChatRoom username={username} displayStatus={displayStatus}  status={status} messages={messages} sendMessage={sendMessage} clearMessages={clearMessages}></ChatRoom>
-      }
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            {!signedIn ?
+              <Redirect to="/login" /> :
+              <ChatRoom username={username} displayStatus={displayStatus} status={status} messages={messages} sendMessage={sendMessage} clearMessages={clearMessages}></ChatRoom>
+            }
+          </Route>
+          <Route path="/login">
+            <SignIn username={username} setUsername={setUsername} setSignedIn={setSignedIn} displayStatus={displayStatus} password={password} setPassword={setPassword}></SignIn>
+          </Route>
+          <Route path="/register">
+            <Register displayStatus={displayStatus}></Register>
+          </Route>
+        </Switch>
+      </Router>
     </Wrapper>
   )
 }
