@@ -1,0 +1,47 @@
+type Query {
+    user(username: String!): User!
+    friends(username: String!):[String]
+}
+
+type Mutation {
+    createUser(username: String!, password: String!): StatusPayLoad!
+    login(username: String!, password: String!): StatusPayLoad!
+    openChatBox(username: String!, friendName: String!): ChatBox!
+    closeChatBox(username:String!, chatBoxName: String!): ChatBox!
+    sendMessage(chatBoxName: String!, username: String!, body:String!): ChatBox!
+    readMessage(chatBoxName: String!, username: String!): ChatBox!
+}
+
+
+type Subscription {
+    chatBoxOpened(username:String!):ChatBox!
+    chatBoxClosed(username:String!):ChatBox!
+    messageReceived(username:String!):ChatBox!
+    messageRead(username:String!):ChatBox!
+}
+
+
+type User {
+    id: ID!
+    username: String!
+    chatBoxes: [ChatBox!]
+}
+
+type ChatBox {
+    id: ID!
+    chatBoxName: String!
+    messages: [Message!]
+    user1_Unread: Int!
+    user2_Unread: Int!
+}
+
+type Message {
+    id: ID!
+    sender: User!
+    body: String!
+}
+
+type StatusPayLoad {
+    type: String!
+    msg: String!
+}
