@@ -4,6 +4,7 @@
 輸入 yarn start開啟前端
 
 - 完成註冊與登錄UI/UX
-  
+- WebSocket 進階功能完成
+
   
 

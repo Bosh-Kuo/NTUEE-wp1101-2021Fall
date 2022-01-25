@@ -4,10 +4,9 @@ import cors from 'cors';
 import WebSocket from 'ws';
 import http from 'http';
 import dotenv from "dotenv-defaults";
-import Message from './models/Message';
+import { registerCase, loginCase, openChatRoomCase, initCase, inputCase, deleteCase } from "./wssHandleCases"
 
-import authRoute from './routes/auth';
-import { sendData, sendStatus, initData } from './wssConnect';
+import { sendData, sendStatus, initData } from './wssSend';
 dotenv.config();
 
 // connect to MongoDB
@@ -21,23 +20,11 @@ if (!process.env.MONGO_URL) {
     })
 }
 
-const db = mongoose.connection;
-const app = express();
-app.use(cors());
-app.use(express.json());
-app.use('/api/auth', authRoute)
-
-const server = http.createServer(app);
-const wss = new WebSocket.Server({ server }); // 建立WebSoccket Server
-
-// 廣播給所有client端
-const broadcastMessage = (data, status) => {
-    wss.clients.forEach((client) => {
-        sendData(data, client);  // 傳送原本前端傳過來的data
-        sendStatus(status, client);  // 傳送status
-    });
-};
-
+const db = mongoose.connection;  //  DB連線object
+const app = express();  // 創建express server物件
+const server = http.createServer(app);  // 創建http server（當需要同個http server重複運行如websocket）
+const wss = new WebSocket.Server({ server });  // 將server交給 WebSocket Server開啟server服務
+const PORT = process.env.port || 4000
 
 db.on('error', (error) => {
     throw new Error("DB connection error " + error);
@@ -46,52 +33,40 @@ db.on('error', (error) => {
 db.once('open', () => {
     console.log('MongoDB connected!')
     wss.on('connection', (ws) => {
-        console.log('One client connect to server!')
+        console.log('一使用者連線')
 
-        // 將先前聊天記錄傳回client端作為初始畫面
-        initData(ws);
-
-        // 後端監聽前端傳送訊息
+        // 對 message 設定監聽，接收從 Client 發送的訊息, byteString 為 client 端發來的訊息
         ws.onmessage = async (byteString) => {
-
-            const { data } = byteString
-            const [task, payload] = JSON.parse(data)  //將byteString 轉回 JS object
+            const { data } = byteString;
+            const [task, payLoad] = JSON.parse(data);  //將前端傳來的byteString data轉為json data
             switch (task) {
-                case 'input': {
-                    const { name, body } = payload
-                    const message
-                        = new Message({ name, body })
-                    try {
-                        await message.save();  // 將client傳來的message存到DB
-                    } catch (e) {
-                        throw new Error
-                            ("Message DB save error: " + e);
-                    }
-
-                    // 將client端傳來的payload傳回client端
-                    broadcastMessage(['output', payload], {
-                        type: "success",
-                        msg: "Message sent."
-                    });
+                case 'register':
+                    await registerCase(payLoad, ws)  // payLoad = {username, password}
+                    break;
+                case 'login':
+                    await loginCase(payLoad, ws)  // payLoad = {username, password}
+                    break 
+                case 'openChatRoom':  // payLoad = {username, friend}
+                    await openChatRoomCase(payLoad, ws)
                     break
-                }
-                case 'clear': {
-                    Message.deleteMany({}, () => {
-
-                        broadcastMessage(['cleared'], {
-                            type: "info",
-                            msg: "Message cache cleared."
-                        });
-                    })
+                case 'init':  // payload = currentChatRoomID
+                    await initCase(payLoad, ws)
                     break
-                }
-
-                default: break
+                case 'input': // payload = { username, body, friend, chatRoomID }
+                    await inputCase(payLoad, ws)
+                    break
+                case 'delete':
+                    await deleteCase(payLoad, ws)
+                    break
+                default:
+                    break;
             }
+        }
+        ws.onclose = () => {
+            console.log("一使用者離線")
         }
     })
 
-    const PORT = process.env.port || 4000
     server.listen(PORT, () => {
         console.log(`Listening on http://localhost:${PORT}`)
     })

@@ -2,28 +2,38 @@ import { Form, Input, Button } from "antd";
 import { UserOutlined, EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import Title from "../Components/Title";
 import { useHistory } from "react-router";
-import { useState } from "react";
-import { regist } from '../apiCall'
+import { useState, useEffect } from "react";
+import useChat from "../Hooks/useChat";
+import {useStatus} from "../Hooks/useStatus"
 
-const Register = ({ displayStatus }) => {
-    const history = useHistory();
+const Register = () => {
+    const history = useHistory()
+    const { register, setRegister, displayStatus } = useStatus()
+    const { sendData } = useChat()
     const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
     const [check, setCheck] = useState("")
+    
 
     const handleSignUp = async () => {
         if (!username || !password || !check) {
-            displayStatus({ type: 'error', msg: 'Please fill out completely!' })
+            displayStatus({ type: 'error', msg: 'Please input completely!' })
         } else if (password !== check) {
             displayStatus({ type: 'error', msg: "Passwords don't match!" })
         } else {
-            const { type, msg } = await regist(username, password)
-            displayStatus({ type: type, msg: msg })
-            if (type === "success") {
-                history.push('/')
-            }
+            sendData(['register', { username, password }])  // 將註冊帳號密碼傳到後端
         }
     }
+
+    useEffect(() => {
+        console.log("register:" + register)
+        if (register) {
+            setRegister(false) // 將register改回fasle狀態才可再次進入 "/register" Route
+            history.push('/')  // 若register成功就切換Route到 "/"下
+        }
+    },[register])
+
+
     return (
         <>
             <Title>

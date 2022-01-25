@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import useChat from '../Hooks/useChat'
-import { message } from 'antd'
 import styled from 'styled-components';
 import ChatRoom from './ChatRoom';
 import SignIn from './SignIn';
 import Register from './Register'
+import { useStatus } from "../Hooks/useStatus";
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,55 +17,39 @@ const Wrapper = styled.div`
   margin: auto;
 `;
 
-const LOCALSTORAGE_KEY = "save-user";
+const LOCALSTORAGE_KEY = "save-user";  
 function App() {
   const saveUser = localStorage.getItem(LOCALSTORAGE_KEY)
-  const { status, messages, sendMessage, clearMessages } = useChat()
-  const [username, setUsername] = useState(saveUser || '')
-  const [signedIn, setSignedIn] = useState(false)
+  const { username, setUsername, login } = useStatus()
   const [password, setPassword] = useState('')
 
-  const displayStatus = (payload) => {
-    if (payload.msg) {
-      const { type, msg } = payload
-      const content = {
-        content: msg, duration: 1.5
-      }
-      switch (type) {
-        // 跳出通知視窗
-        case 'success':
-          message.success(content)
-          break
-        case 'error':
-          message.error(content)
-          break
-        default:
-          message.warning(content)
-      }
-    }
-  }
-
   useEffect(() => {
-    if (signedIn) {
+    console.log("login:" + login)
+    if (login) {
       localStorage.setItem(LOCALSTORAGE_KEY, username);
+    } else {
+      setUsername("" || saveUser)  // 將username更新為上次登錄者
     }
-  }, [signedIn, username])
+  }, [login])
 
   return (
     <Wrapper>
       <Router>
         <Switch>
           <Route exact path="/">
-            {!signedIn ?
+            {!login ?
               <Redirect to="/login" /> :
-              <ChatRoom username={username} displayStatus={displayStatus} status={status} messages={messages} sendMessage={sendMessage} clearMessages={clearMessages}></ChatRoom>
+              <ChatRoom/>
             }
           </Route>
           <Route path="/login">
-            <SignIn username={username} setUsername={setUsername} setSignedIn={setSignedIn} displayStatus={displayStatus} password={password} setPassword={setPassword}></SignIn>
+            {!login ?
+              <SignIn password={password} setPassword={setPassword} ></SignIn> :
+              <Redirect to="/" />
+            }
           </Route>
           <Route path="/register">
-            <Register displayStatus={displayStatus}></Register>
+            <Register/>
           </Route>
         </Switch>
       </Router>

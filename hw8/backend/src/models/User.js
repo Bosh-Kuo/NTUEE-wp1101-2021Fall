@@ -1,18 +1,19 @@
 import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
-// Creating a schema, sort of like working with an ORM
 const UserSchema = new Schema({
     username: {
         type: String,
-        required: [true, 'Name field is required.']
+        required: [true, 'UserName field is required.']
     },
-    password:{
+    password: {
         type: String,
         required: [true, 'Password field is required.']
     },
+    chatRoom: [{
+        type: mongoose.Schema.Types.ObjectId, ref: 'ChatRoom'
+    }]
 })
-// Creating a table within database with the defined schema
-const User = mongoose.model('user', UserSchema)
-// Exporting table for querying and mutating
+
+const User = mongoose.model('User', UserSchema)
 export default User;
