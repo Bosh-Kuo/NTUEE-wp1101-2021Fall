@@ -16,13 +16,14 @@ const Wrapper = styled.section`
 `;
 
 const Header = () => {
-  const { addRegularMessage } = useScoreCard();
+  // 在functinal component中要使用Context值可以透過useContext(Context)，而此function 已經定義在 useScoreCard.js中
+  const { clearMessage } = useScoreCard();  // 只取Context中的clearMessage function來使用，
 
   const handleClear = async () => {
     const {
       data: { message },
     } = await axios.delete('/api/clear-db');
-    addRegularMessage(message);
+    clearMessage(message);
   };
 
   return (

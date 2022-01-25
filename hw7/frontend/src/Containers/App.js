@@ -15,12 +15,13 @@ const Wrapper = styled.div`
 
 const StyledPaper = styled(Paper)`
   padding: 2em;
+  width: 60%;
 `;
 
 function App() {
   return (
     <Wrapper>
-      <StyledPaper elevation={3}>
+      <StyledPaper elevation={3}>  {/* the elevation controls the size of the shadow applied to the surface.*/}
         <Header />
         <Body />
       </StyledPaper>

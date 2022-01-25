@@ -17,8 +17,7 @@ const query = async (req, res) => {
     let messages = [];
     if (filteredCards.length > 0) {
         filteredCards.forEach(card => messages.push(`Found card with ${queryType}: (${card.name}, ${card.subject}, ${card.score})`));
-        res.send({ messages: messages });
-
+        res.send({ messages: messages, cards: filteredCards});
     } else {
         res.send({ message: `${queryType} (${queryString}) not found!` });
     }
