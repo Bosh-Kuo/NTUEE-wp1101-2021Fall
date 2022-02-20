@@ -22,7 +22,7 @@
 
 - [HW5 — Calculator(front-end)](https://github.com/Bosh-Kuo/wp1101/tree/main/hw5)
   - React.js 練習
-  - demo: https://app.netlify.com/sites/wp1101-hw5-calculator/overview
+  - demo: https://wp1101-hw5-calculator.netlify.app/
 
 - [HW6 — Number Guessing Game(full stack)](https://github.com/Bosh-Kuo/wp1101/tree/main/hw6)
   - Node.js + Express Backend 練習
