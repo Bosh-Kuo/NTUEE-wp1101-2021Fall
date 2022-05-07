@@ -1,7 +1,5 @@
 # wp1101
 - Class Website: https://wp.ee.ntu.edu.tw
-- Info: [Link](https://hackmd.io/9H-sQ4krS_CgTsVr2BflRQ?view)
-- Webex Meeting Link: [Link](https://ntucc.webex.com/meet/cyhuang)
 
 ---
 - [Hw1 - 數位相簿之靜態網頁(front-end)](https://github.com/Bosh-Kuo/wp1101/tree/main/hw1) 
